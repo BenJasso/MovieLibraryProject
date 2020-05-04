@@ -9,7 +9,7 @@ using WebAPISample.Models;
 
 namespace WebAPISample.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/movie")]
     [ApiController]
     public class MovieController : ControllerBase
     {
@@ -23,7 +23,8 @@ namespace WebAPISample.Controllers
         public IActionResult Get()
         {
             // Retrieve all movies from db logic
-            return Ok(new string[] { "movie1 string", "movie2 string" });
+            var movies = _context.Movies.ToList();
+            return Ok(movies);
         }
 
         // GET api/movie/5
@@ -32,7 +33,8 @@ namespace WebAPISample.Controllers
         {
             // Retrieve movie by id from db logic
             // return Ok(movie);
-            return Ok();
+            var movie = _context.Movies.Where(m => m.MovieId == id);
+            return Ok(movie);
         }
 
         // POST api/movie
@@ -40,7 +42,13 @@ namespace WebAPISample.Controllers
         public IActionResult Post([FromBody]Movie value)
         {
             // Create movie in db logic
-            return Ok();
+            Movie movie = new Movie();
+            movie.Title = value.Title;
+            movie.Director = value.Director;
+            movie.Genre = value.Genre;
+            _context.Movies.Add(movie);
+            _context.SaveChanges();
+            return Ok(Get());
         }
 
         // PUT api/movie
@@ -56,6 +64,9 @@ namespace WebAPISample.Controllers
         public IActionResult Delete(int id)
         {
             // Delete movie from db logic
+            var movie = _context.Movies.Where(m => m.MovieId == id).SingleOrDefault();
+            _context.Movies.Remove(movie);
+            _context.SaveChanges();
             return Ok();
         }
     }
