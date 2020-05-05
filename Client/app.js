@@ -24,23 +24,26 @@
     }
 
     $('#my-form').submit( processForm );
+    
+    $(function(){
 
-    function displayMovies( e ){
-        $.ajax({
-            url: 'https://localhost:44325/api/movie',
-            dataType: 'json',
-            type: 'get',
-            contentType: 'application/json',
-            data: JSON.stringify(dict),
-            success: function( data, textStatus, jQxhr ){
-                $('#response pre').html( data );
-            },
-            error: function( jqXhr, textStatus, errorThrown ){
-                console.log( errorThrown );
+        $.get("https://localhost:44325/api/movie", function(data){
+            console.log(data)
+    
+            for(let i = 0; i < data.length; i++){
+                $("#movies").append(
+                    `<tr><td>${JSON.stringify(data[i].title)}</td>
+                    <td>${JSON.stringify(data[i].director)}</td>
+                    <td>${JSON.stringify(data[i].genre)}</td></tr>`
+                    );
             }
-        });
-
-        e.preventDefault();
-    } 
-    $('#movies').html(displayMovies);   
+        })
+    })
+    function manualRefresh(){
+        window.location.reload();
+    }
 })(jQuery);
+
+
+//'Accept: application/json',
+//Content-type: application/json'
