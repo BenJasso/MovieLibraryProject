@@ -15,6 +15,7 @@ namespace WebAPISample.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Movie>()
+
              .HasData(
                 new Movie { MovieId = 1, Title = "The Departed", Genre = "Drama", Director = "Martin Scorsese" },
                 new Movie { MovieId = 2, Title = "The Dark Knight", Genre = "Drama", Director = "Christopher Nolan" },
@@ -22,6 +23,7 @@ namespace WebAPISample.Data
                 new Movie { MovieId = 4, Title = "Pineapple Express", Genre = "Comedy", Director = "David Gordon Green" },
                 new Movie { MovieId = 5, Title = "Die Hard", Genre = "Action", Director = "John McTiernan" }
              );
+
 
         }
 
