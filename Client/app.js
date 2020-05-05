@@ -13,7 +13,9 @@
             contentType: 'application/json',
             data: JSON.stringify(dict),
             success: function( data, textStatus, jQxhr ){
-                $('#response pre').html( data );
+                $("#movieList").html("");
+                getMovies();
+               
             },
             error: function( jqXhr, textStatus, errorThrown ){
                 console.log( errorThrown );
@@ -21,29 +23,53 @@
         });
 
         e.preventDefault();
+        
     }
 
-    $('#my-form').submit( processForm );
+    $('#my-form').submit( processForm);
     
-    $(function(){
+    
+    
 
-        $.get("https://localhost:44325/api/movie", function(data){
-            console.log(data)
-    
-            for(let i = 0; i < data.length; i++){
-                $("#movies").append(
-                    `<tr><td>${JSON.stringify(data[i].title)}</td>
-                    <td>${JSON.stringify(data[i].director)}</td>
-                    <td>${JSON.stringify(data[i].genre)}</td></tr>`
-                    );
-            }
-        })
+   function getMovies(){
+
+    $.get("https://localhost:44325/api/movie", function(data){
+        console.log(data)
+        for(let i = 0; i < data.length; i++){
+            $("#movieList").append(
+                `<tr><td>${JSON.stringify(data[i].title).replace(/\"/g,'')}</td>
+                <td>${JSON.stringify(data[i].director).replace(/\"/g,'')}</td>
+                <td>${JSON.stringify(data[i].genre).replace(/\"/g,'')}</td>
+                <td><button type='edit'>Edit</button></td>
+                <td><button type='delete'>Delete</button></td></tr>`
+                );
+        }
     })
-    function manualRefresh(){
-        window.location.reload();
-    }
-})(jQuery);
 
+   }
+
+   $(function(){
+    $.get("https://localhost:44325/api/movie", function(data){
+        console.log(data)
+        for(let i = 0; i < data.length; i++){
+            $("#movieList").append(
+                `<tr><td>${JSON.stringify(data[i].title).replace(/\"/g,'')}</td>
+                <td>${JSON.stringify(data[i].director).replace(/\"/g,'')}</td>
+                <td>${JSON.stringify(data[i].genre).replace(/\"/g,'')}</td>
+                <td><button type='edit'>Edit</button></td>
+                <td><button type='delete'>Delete</button></td></tr>`
+                );
+        }
+    })
+})
+
+
+    
+    
+    
+    
+   
+})(jQuery);
 
 //'Accept: application/json',
 //Content-type: application/json'

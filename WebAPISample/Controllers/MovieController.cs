@@ -50,7 +50,8 @@ namespace WebAPISample.Controllers
             movie.Genre = value.Genre;
             _context.Movies.Add(movie);
             _context.SaveChanges();
-            return Ok(Get());
+            var movies = _context.Movies.ToList();
+            return Ok(movies);
         }
 
         // PUT api/movie
