@@ -23,8 +23,10 @@ namespace WebAPISample.Controllers
         public IActionResult Get()
         {
             // Retrieve all movies from db logic
+
             var movies = _context.Movies.ToList();
             return Ok(movies);
+
         }
 
         // GET api/movie/5
@@ -48,7 +50,8 @@ namespace WebAPISample.Controllers
             movie.Genre = value.Genre;
             _context.Movies.Add(movie);
             _context.SaveChanges();
-            return Ok(Get());
+            var movies = _context.Movies.ToList();
+            return Ok(movies);
         }
 
         // PUT api/movie
