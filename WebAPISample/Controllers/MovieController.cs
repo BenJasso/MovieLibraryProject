@@ -67,7 +67,7 @@ namespace WebAPISample.Controllers
             var movies = _context.Movies.ToList();
             return Ok(movies);
         }
-
+        
         // DELETE api/movie/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

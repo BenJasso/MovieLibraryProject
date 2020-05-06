@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://bootswatch.com/4/sandstone/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <title>jQuery AJAX POST Form</title>
+    <title>Movie Details</title>
     <meta charset="utf-8">
 </head>
 <body>
@@ -25,20 +25,12 @@
           </form>
         </div>
       </nav>
-<form id="my-form">
-    <input type="text" name="title" placeholder="Title" />
-    <input type="text" name="director" placeholder="Director" />
-    <input type="text" name="genre" placeholder="Genre" />
-    <button type="submit">Add Movie</button>
-</form>
-
-<table id="movies">
-    <tr>
-        <th id ="movieTitle">Movie Title</th>
-        
-    </tr>
-    <tbody id="movieList"></tbody>
-    
+<table id="movie">
+    <th>Title</th>
+    <th>Director</th>
+    <th>Genre</th>
+    <th></th>
+    <th></th>
 </table>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

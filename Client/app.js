@@ -43,8 +43,8 @@
                     `<tr>
                         <td>${JSON.stringify(data[i].title).replace(/\"/g,'')}</td>
                        {
-                        <td><button  id =${movieId} type='details' onclick= getDetails(${movieId})>Details</button></td>
-                        <td></td>
+                        <td><button  id =${movieId} type="button" class="btn btn-outline-info" onclick= getDetails(${movieId})>Details</button></td>
+                        <td>><button id="delete" type="button" class="btn btn-outline-secondary">Delete</button></td>
                     </tr>`
                     );
             }
