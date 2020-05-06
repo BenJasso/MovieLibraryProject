@@ -63,9 +63,9 @@ namespace WebAPISample.Controllers
             dbmovie.Title = movie.Title;
             dbmovie.Director = movie.Director;
             dbmovie.Genre = movie.Genre;
-            _context.Update(dbmovie);
             _context.SaveChanges();
-            return Ok();
+            var movies = _context.Movies.ToList();
+            return Ok(movies);
         }
 
         // DELETE api/movie/5
