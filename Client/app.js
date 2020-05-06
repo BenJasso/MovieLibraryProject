@@ -35,10 +35,8 @@
             for(let i = 0; i < data.length; i++){
                 $("#movieList").append(
                     `<tr><td>${JSON.stringify(data[i].title).replace(/\"/g,'')}</td>
-                    <td>${JSON.stringify(data[i].director).replace(/\"/g,'')}</td>
-                    <td>${JSON.stringify(data[i].genre).replace(/\"/g,'')}</td>
-                    <td><button type='edit'>Edit</button></td>
-                    <td><button type='delete'>Delete</button></td></tr>`
+                    <td><button id="details" type="button" class="btn btn-outline-info">Details</button></td>
+                    <td><button id="delete" type="button" class="btn btn-outline-secondary">Delete</button></tr>`
                     );
             }
         })
@@ -49,14 +47,12 @@
             for(let i = 0; i < data.length; i++){
                 $("#movieList").append(
                     `<tr><td>${JSON.stringify(data[i].title).replace(/\"/g,'')}</td>
-                    <td>${JSON.stringify(data[i].director).replace(/\"/g,'')}</td>
-                    <td>${JSON.stringify(data[i].genre).replace(/\"/g,'')}</td>
-                    <td><button type='edit'>Edit</button></td>
-                    <td><button type='delete'>Delete</button></td></tr>`
+                    <td><button id="details" type="button" class="btn btn-outline-info">Details</button></td>
+                    <td><button id="delete" type="button" class="btn btn-outline-secondary">Delete</button></tr>`
                     );
             }
         })
-    $("#movies delete").on("click", "delete", function(){
+    $("#movieList delete").on("click", "delete", function(){
         $.ajax({
             url: 'https://localhost:44325/api/movie',
             dataType: 'json',
@@ -87,6 +83,21 @@
         });
 
         e.preventDefault();
+    }
+    $("#details").click(getMovieById);
+
+    function getMovieById(){
+
+        $.get("https://localhost:44325/api/movie/", function(data){
+            console.log(data)
+            for(let i = 0; i < data.length; i++){
+                $("#movieList").append(
+                    `<tr><td>${JSON.stringify(data[i].title).replace(/\"/g,'')}</td>
+                    <td><button id="details" type="button" class="btn btn-outline-info">Details</button></td>
+                    <td><button id="delete" type="button" class="btn btn-outline-secondary">Delete</button></tr>`
+                    );
+            }
+        });
     }
 })(jQuery);
     
