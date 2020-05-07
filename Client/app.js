@@ -85,14 +85,14 @@ function displayDetails(movie){
 
 function getDetails(id){
     $.get("https://localhost:44325/api/movie/" +id, function(data){
-        var movie = data[0];
+        var movie = data;
         displayDetails(movie);
 
     })
 
 }
 
-function editMovieDetails(title, director, genre, movieId){
+function editMovieDetails(title, director, genre){
     $("#movieList").html("");
     $("#movies movieTitle").html("");
     $("#next-form").append(
@@ -109,7 +109,7 @@ function editMovieDetails(title, director, genre, movieId){
      ); 
 }
    
-function updateMovie(title, director, genre,){
+function updateMovie(title, director, genre){
     (function(e){
     var dict = {
         Title : title,
@@ -133,9 +133,9 @@ function updateMovie(title, director, genre,){
     });
 
     e.preventDefault();
-});
+    });
 
-$('#next-form').submit( updateMovie );
+
 }
 
 
