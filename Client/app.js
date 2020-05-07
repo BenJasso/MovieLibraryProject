@@ -41,10 +41,10 @@
                 var movieId= (data[i].movieId);
                 $("#movieList").append(
                     `<tr>
-                        <td>${JSON.stringify(data[i].title).replace(/\"/g,'')}</td>
+                        <td><center>${JSON.stringify(data[i].title).replace(/\"/g,'')}</center></td>
                        {
-                        <td><button  id =${movieId} type="button" class="btn btn-outline-info" onclick= getDetails(${movieId})>Details</button></td>
-                        <td><button id="delete" type="button" class="btn btn-outline-secondary" onclick = deleteMovie(${movieId})>Delete</button></td>
+                        <td class="right"><right><button  id =${movieId} type="button" class="btn btn-outline-info right" onclick= getDetails(${movieId})>Details</button></right></td>
+                        <td class="left"><left><button id="delete" type="button" class="btn btn-outline-secondary left" onclick = deleteMovie(${movieId})>Delete</button></left></td>
                     </tr>`
                     );
             }
@@ -71,7 +71,7 @@ function displayDetails(movie){
             <td><strong>Director:</strong> ${JSON.stringify(movie.director).replace(/\"/g,'')}</td>
         </tr>
         <tr>
-            <td>Genre: ${JSON.stringify(movie.genre).replace(/\"/g,'')}</td>
+            <td><strong>Genre:</strong> ${JSON.stringify(movie.genre).replace(/\"/g,'')}</td>
         </tr>
         <tr>
             <td><button type="button" class="btn btn-primary" onclick= window.location.replace("index.html") >Go Back</button></td>
@@ -94,7 +94,8 @@ function getDetails(id){
 
 function editMovieDetails(title, director, genre){
     $("#movieList").html("");
-    $("#movies movieTitle").html("");
+    $("#movieTitle").html("");
+    $("#editMovieTitle").html(title)
     $("#next-form").append(
         `<div>
             <input type="text" name="title" placeholder="${title}" />
